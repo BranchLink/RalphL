@@ -1,0 +1,404 @@
+---
+import { Icon } from 'astro-icon';
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <title>BranchLink/Ralph</title>
+
+    <link rel="icon" type="image/png" href="/assets/RalphL.jpeg" />
+
+    <style>
+      /* CSS Reset (Modern Approach) */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      body,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      p,
+      ol,
+      ul,
+      figure,
+      blockquote,
+      dl,
+      dd {
+        margin: 0;
+        padding: 0;
+      }
+
+      ol,
+      ul {
+        list-style: none;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      input,
+      button,
+      textarea,
+      select {
+        font: inherit;
+      }
+
+      /* CSS Variables for theming */
+      :root {
+        --bg-color: #282828;
+        --card-bg-color: #fff;
+        --text-color: #212121;
+        --secondary-text-color: #2d2d2d;
+        --accent-color: #f8f8f8;
+        --border-color: #ddd;
+        --footer-text-color: #353535;
+        --font-family: sans-serif;
+      }
+
+      body {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        font-family: var(--font-family);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+      }
+
+      .card {
+        max-width: 400px;
+        width: 90%;
+        background-color: var(--card-bg-color);
+        border-radius: 0.5rem; /* Use rems for scaling */
+        overflow: hidden;
+        box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.15); /* Use rems */
+        display: flex;
+        flex-direction: column;
+      }
+
+      .header-image {
+        width: 100%;
+        height: 10rem; /* Use rems */
+        overflow: hidden;
+        position: relative;
+      }
+
+      .header-image img {
+        width: 100%;
+        height: 100%; /* Fill container */
+        object-fit: cover;
+      }
+
+      .profile-section {
+        padding: 1.25rem; /* Use rems */
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        position: relative;
+        margin-top: -4.0625rem; /* Use rems */
+        margin-bottom: 0;
+      }
+
+      .profile-image {
+        width: 4.375rem; /* Use rems */
+        height: 4.375rem; /* Use rems */
+        object-fit: cover;
+        margin-bottom: 0.75rem; /* Use rems */
+        border: 0.125rem solid var(--card-bg-color); /* Use rems */
+        border-radius: 0.5rem; /* Use rems */
+      }
+
+      .profile-text {
+        text-align: left;
+      }
+
+      .profile-text h1 {
+        margin: -0.25rem 0 0.25rem 0; /* Use rems */
+        font-size: 1.25rem; /* Use rems */
+        font-weight: 600;
+      }
+
+      .profile-text p {
+        margin: 0;
+        font-size: 0.875rem; /* Use rems */
+        color: var(--secondary-text-color);
+      }
+
+      .button-list {
+        padding: 1rem; /* Use rems */
+      }
+
+      .button-list a {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: var(--accent-color);
+        padding: 0.75rem 0.875rem; /* Use rems */
+        margin-bottom: 0.875rem; /* Use rems */
+        border-radius: 0.5rem; /* Use rems */
+        text-decoration: none;
+        color: var(--text-color);
+        font-size: 0.875rem; /* Use rems */
+        border: 0.0625rem solid var(--border-color); /* Use rems */
+        transition: background-color 0.2s ease-in-out,
+          border-color 0.2s ease-in-out;
+      }
+
+      .button-list a:hover {
+        background-color: #e8e8e8;
+        border-color: #ccc;
+      }
+
+      .button-list a span {
+        display: flex;
+        align-items: center;
+      }
+
+      .button-list a span svg {
+        margin-right: 0.5rem; /* Use rems */
+      }
+
+      .footer {
+        text-align: center;
+        margin-top: 1.875rem; /* Use rems */
+        margin-bottom: 1.25rem; /* Use rems */
+        font-size: 0.875rem; /* Use rems */
+        color: var(--footer-text-color);
+      }
+
+      /* Media Queries for Responsiveness */
+      @media (max-width: 600px) {
+        .card {
+          width: 95%;
+          margin: 1rem; /* Use rems */
+        }
+
+        .header-image {
+          height: 7.5rem; /* Use rems */
+        }
+
+        .profile-section {
+          margin-top: -3.125rem; /* Use rems */
+        }
+
+        .profile-text h1 {
+          font-size: 1rem; /* Use rems */
+        }
+
+        .button-list a {
+          font-size: 0.8rem; /* Use rems */
+          padding: 0.625rem; /* Use rems */
+        }
+      }
+
+      @media (max-width: 400px) {
+        .header-image {
+          height: 6.25rem; /* Use rems */
+        }
+      }
+
+      /* Add padding to the last link */
+      .button-list a:last-child {
+        padding-bottom: 1rem; /* Use rems */
+      }
+
+      /* Pixelated arrow */
+      .pixel-arrow {
+        display: inline-block;
+        width: 0.5625rem; /* Use rems */
+        height: 0.5625rem; /* Use rems */
+        background-color: var(--text-color);
+        -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><polygon points="0,4 6,4 6,0 10,5 6,10 6,6 0,6"/></svg>')
+          no-repeat center;
+        mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><polygon points="0,4 6,4 6,0 10,5 6,10 6,6 0,6"/></svg>')
+          no-repeat center;
+        transform: scale(1.3);
+        transform-origin: left center;
+        margin-left: 0.3125rem; /* Use rems */
+        transition: background-color 0.2s ease-in-out;
+      }
+
+      .button-list a:hover .pixel-arrow {
+        background-color: #000;
+      }
+
+      /* Loader Styles */
+      .loading-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0s linear 0.25s, opacity 0.25s 0s;
+      }
+
+      .loading-spinner {
+        border: 0.3125rem solid #f3f3f3; /* Use rems */
+        border-top: 0.3125rem solid var(--accent-color); /* Use rems */
+        border-radius: 50%;
+        width: 3.125rem; /* Use rems */
+        height: 3.125rem; /* Use rems */
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .loading-active {
+        visibility: visible;
+        opacity: 1;
+        transition-delay: 0s;
+      }
+
+      body.loading {
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body class="loading">
+    <main>
+      <div class="card">
+        <div class="header-image">
+          <img src="/assets/lbbusinessbuild.jpg" alt="Business Building" />
+        </div>
+
+        <section class="profile-section">
+          <img
+            class="profile-image"
+            src="/assets/RalphL.jpeg"
+            alt="Profile image of Ralph Lopez"
+          />
+          <div class="profile-text">
+            <h1>Ralph Lopez</h1>
+            <p>Business & Information Systems @ CSULB</p>
+          </div>
+        </section>
+
+        <nav class="button-list">
+          <a
+            href="https://www.linkedin.com/in/ralphalopez/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>
+              <Icon name="mdi:linkedin" width="20px" height="20px" />
+              LinkedIn
+            </span>
+            <span class="pixel-arrow"></span>
+          </a>
+          <a
+            href="mailto:LopezAnthonyRalph@gmail.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>
+              <Icon name="mdi:email" width="20px" height="20px" />
+              Gmail
+            </span>
+            <span class="pixel-arrow"></span>
+          </a>
+          <a
+            href="https://www.instagram.com/26ralphla/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>
+              <Icon name="mdi:instagram" width="20px" height="20px" />
+              Instagram
+            </span>
+            <span class="pixel-arrow"></span>
+          </a>
+          <a
+            href="https://branchlinknextcorner.netlify.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>
+              <Icon name="mdi:food" width="20px" height="20px" />
+              Next Corner
+            </span>
+            <span class="pixel-arrow"></span>
+          </a>
+          <a
+            href="https://github.com/RalphStartup"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>
+              <Icon name="mdi:github" width="20px" height="20px" />
+              GitHub
+            </span>
+            <span class="pixel-arrow"></span>
+          </a>
+        </nav>
+      </div>
+    </main>
+
+    <div class="loading-overlay" id="loading-overlay">
+      <div class="loading-spinner"></div>
+    </div>
+
+    <script>
+      // Function to show the loader
+      function showLoader() {
+        document.getElementById('loading-overlay').classList.add('loading-active');
+      }
+
+      // Function to hide the loader
+      function hideLoader() {
+        document.getElementById('loading-overlay').classList.remove('loading-active');
+        document.body.classList.remove('loading');
+      }
+
+      // Show loader on page load
+      showLoader();
+
+      // Hide loader when the page is fully loaded
+      window.addEventListener('load', () => {
+        hideLoader();
+      });
+
+      // Add event listeners to your links to show the loader
+      const links = document.querySelectorAll('.button-list a');
+      links.forEach((link) => {
+        link.addEventListener('click', (event) => {
+          showLoader();
+          setTimeout(() => {
+            window.location.href = link.href;
+          }, 100);
+        });
+      });
+    </script>
+  </body>
+</html>
